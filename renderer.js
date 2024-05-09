@@ -90,6 +90,28 @@ function saveCurrentNote() {
   document.querySelector('.save-btn').addEventListener('click', saveCurrentNote);
   document.querySelector('.new-btn').addEventListener('click', createNewNote);
   document.querySelector('.delete-btn').addEventListener('click', deleteCurrentNote);
+  document.querySelector('.close-btn').addEventListener('click', () => {
+    window.close();
+  });
+  
+  // Render notes in the note list
+  function renderNotes() {
+    const noteList = document.querySelector('.note-list ul');
+    noteList.innerHTML = '';
+  
+    notes.forEach((note, index) => {
+      const li = document.createElement('li');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = note.title || `Note ${index + 1}`;
+      input.addEventListener('change', () => {
+        notes[index].title = input.value.trim() || `Note ${index + 1}`;
+        saveNotes();
+      });
+      li.appendChild(input);
+      noteList.appendChild(li);
+    });
+  }
   
   // Initialize
   let currentNoteIndex = null;
