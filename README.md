@@ -1,4 +1,4 @@
-NoteZone
+![](https://github.com/Sieep-Coding/notetaking-app-electron/blob/main/assets/imgs/notezone.png)
 ========
 
 NoteZone is a modern and intuitive note-taking application built with Electron, HTML, CSS, and JavaScript. 
