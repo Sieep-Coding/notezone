@@ -1,66 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashy Note Taker</title>
-    <!-- Add your CSS stylesheets or link to external stylesheets here -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: rgba(255, 255, 255, 0.1); /* Set your preferred background color */
-            color: #ffffff; /* Set your preferred text color */
-        }
-
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .textarea {
-            width: 80%;
-            height: 300px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.5); /* Set your preferred textarea background color */
-            color: #ffffff; /* Set your preferred textarea text color */
-            font-size: 16px;
-            resize: none;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #4CAF50; /* Set your preferred button background color */
-            color: white; /* Set your preferred button text color */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #45a049; /* Set your preferred button hover background color */
-        }
-    </style>
+    <title>NoteZone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="container">
-        <textarea class="textarea" placeholder="Write your notes here..."></textarea>
-        <button class="btn">Save</button>
+        <header>
+            <h1>NoteZone</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Notes</a></li>
+                    <li><a href="#">Reminders</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="note-list">
+                <ul>
+                    <!-- Notes will be dynamically added here -->
+                </ul>
+            </div>
+            <div class="note-editor">
+                <textarea placeholder="Start typing your note..."></textarea>
+                <div class="controls">
+                    <button class="save-btn">Save</button>
+                    <button class="new-btn">New</button>
+                    <button class="delete-btn">Delete</button>
+                </div>
+            </div>
+        </main>
     </div>
-    <!-- Add your JavaScript files or inline scripts here -->
-    <script src="renderer.js"></script> <!-- Assuming you'll have a renderer.js file for handling frontend logic -->
+    <script src="renderer.js"></script>
 </body>
-
 </html>
