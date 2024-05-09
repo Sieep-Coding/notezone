@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoteZone</title>
+    <title>NoteZone - Reminders</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -14,22 +12,25 @@
             <h1>NoteZone</h1>
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Notes</a></li>
-                    <li><a href="reminders.html">Reminders</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="index.html">Notes</a></li>
+                    <li><a href="reminders.html" class="active">Reminders</a></li>
+                    <li><a href="settings.html">Settings</a></li>
                     <li><button class="close-btn">&#10005;</button></li>
                 </ul>
             </nav>
         </header>
         <main>
-            <div class="note-list">
+            <div class="reminder-list">
+                <h2>Reminders</h2>
                 <ul>
-                    <!-- Notes will be dynamically added here -->
+                    <!-- Reminders will be dynamically added here -->
                 </ul>
             </div>
-            <div class="note-editor">
-                <textarea placeholder="Start typing your note..."></textarea>
+            <div class="reminder-editor">
+                <input type="text" placeholder="Reminder title" />
+                <textarea placeholder="Reminder description"></textarea>
                 <div class="controls">
+                    <input type="email" placeholder="Email address" />
                     <button class="save-btn">Save</button>
                     <button class="new-btn">New</button>
                     <button class="delete-btn">Delete</button>
@@ -37,6 +38,6 @@
             </div>
         </main>
     </div>
-    <script src="renderer.js"></script>
+    <script src="reminders.js"></script>
 </body>
 </html>
