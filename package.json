@@ -1,0 +1,14 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "note app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Nick",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.3"
+  }
+}
