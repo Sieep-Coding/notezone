@@ -3,6 +3,7 @@ dist
 tmp
 out-tsc
 bazel-out
+notes.json
 
 # Node
 node_modules

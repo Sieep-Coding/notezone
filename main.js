@@ -19,7 +19,7 @@ function createWindow() {
     titleBarStyle: 'hidden',
     vibrancy: 'ultra-dark',
     backgroundColor: '#00000000',
-    icon: path.join(__dirname, 'icon.png'),
+    icon: path.join(__dirname, 'notezone.png'),
     show: false
   });
 

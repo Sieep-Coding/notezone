@@ -12,9 +12,9 @@
             <h1>NoteZone</h1>
             <nav>
                 <ul>
-                    <li><a href="/index.html">Notes</a></li>
-                    <li><a href="/assets/html/reminders.html">Reminders</a></li>
-                    <li><a href="/assets/html/settings.html" class="active">Settings</a></li>
+                    <li><a href="/index.html" data-target="notes">Notes</a></li>
+                    <li><a href="/assets/html/reminders.html" data-target="reminders">Reminders</a></li>
+                    <li><a href="/assets/html/settings.html" data-target="settings" class="active">Settings</a></li>
                     <li><button class="close-btn">&#10005;</button></li>
                 </ul>
             </nav>
@@ -54,5 +54,6 @@
         </main>
     </div>
     <script src="../js/settings.js"></script>
+    <script src="../js/renderer.js"></script>
 </body>
 </html>
