@@ -30,7 +30,12 @@
                 <input type="text" placeholder="Reminder title" />
                 <textarea placeholder="Reminder description"></textarea>
                 <div class="controls">
-                    <input type="email" placeholder="Email address" />
+                    <select id="reminder-time">
+                        <option value="2">2 minutes</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                        <option value="15">15 minutes</option>
+                    </select>
                     <button class="save-btn">Save</button>
                     <button class="new-btn">New</button>
                     <button class="delete-btn">Delete</button>
