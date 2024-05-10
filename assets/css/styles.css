@@ -214,6 +214,14 @@ nav li button:hover {
       margin-bottom: 20px;
     }
   }
+
+  .titlebar {
+    -webkit-app-region: drag;
+  }
+
+  .allow-select {
+    -webkit-user-select: text;
+  }
   
   /* Scrollbar styles */
   ::-webkit-scrollbar {
