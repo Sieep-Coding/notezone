@@ -28,10 +28,15 @@ function renderNotes() {
 
   notes.forEach((note, index) => {
     const li = document.createElement('li');
-    li.textContent = note.title || `Note ${index + 1}`;
-    li.addEventListener('click', () => {
-      displayNote(index);
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = note.title || `Note ${index + 1}`;
+    input.addEventListener('change', () => {
+      notes[index].title = input.value.trim() || `Note ${index + 1}`;
+      saveNotes();
     });
+
+    li.appendChild(input);
     noteList.appendChild(li);
   });
 }

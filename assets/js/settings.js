@@ -1,10 +1,15 @@
 // Get theme buttons
 const themeButtons = document.querySelectorAll('.theme-btn');
+
 // Get font buttons
 const fontButtons = document.querySelectorAll('.font-btn');
+
 // Get accessibility checkboxes
 const highContrastCheckbox = document.getElementById('high-contrast');
 const largerTextCheckbox = document.getElementById('larger-text');
+
+// Get theme toggle button
+const themeToggle = document.querySelector('.theme-toggle');
 
 // Load saved settings from localStorage
 const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -47,6 +52,13 @@ largerTextCheckbox.addEventListener('change', () => {
   const largerText = largerTextCheckbox.checked;
   applyLargerText(largerText);
   saveSettings('largerText', largerText);
+});
+
+// Theme toggle event listener
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+  applyTheme(currentTheme);
+  saveSettings('theme', currentTheme);
 });
 
 // Apply theme

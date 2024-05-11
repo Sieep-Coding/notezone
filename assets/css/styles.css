@@ -204,6 +204,96 @@ main {
   transform: scale(1.05);
 }
 
+/* Settings */
+.settings {
+  background-color: rgba(44, 44, 44, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.settings h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.setting-group {
+  margin-bottom: 20px;
+}
+
+.setting-group h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.theme-options,
+.font-options,
+.accessibility-options {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn,
+.font-btn {
+  background-color: rgba(76, 76, 76, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.theme-btn.active,
+.font-btn.active {
+  background-color: rgba(255, 152, 0, 0.5);
+}
+
+.theme-btn:hover,
+.font-btn:hover {
+  background-color: rgba(92, 92, 92, 0.5);
+}
+
+.accessibility-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Light theme styles */
+body.light .settings {
+  background-color: rgba(240, 240, 240, 0.5);
+  color: #333;
+}
+
+body.light nav li button {
+  color: #333;
+}
+
+body.light nav li button:hover {
+  color: #ff9800;
+}
+
+body.light .theme-btn,
+body.light .font-btn {
+  background-color: rgba(220, 220, 220, 0.5);
+  color: #333;
+}
+
+body.light .theme-btn.active,
+body.light .font-btn.active {
+  background-color: rgba(255, 152, 0, 0.5);
+  color: #fff;
+}
+
+body.light .theme-btn:hover,
+body.light .font-btn:hover {
+  background-color: rgba(204, 204, 204, 0.5);
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   main {
