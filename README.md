@@ -30,5 +30,5 @@ Project Structure
 -   `settings.html`: The HTML file for the Settings section.
 -   `styles.css`: The CSS file containing the styles for the entire application.
 -   `renderer.js`: The JavaScript file that handles the note-taking functionality.
--   `reminders.js`: The JavaScript file that handles the reminder management and email notification functionality.
+-   `reminders.js`: The JavaScript file that handles the reminder management functionality.
 -   `settings.js`: The JavaScript file that handles the application settings and customization options.
