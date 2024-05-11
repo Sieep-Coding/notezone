@@ -7,7 +7,11 @@ Notes are stored locally ONLY!
 
 It provides a user-friendly interface for creating, editing, and managing notes and reminders, along with various customization options for an enhanced user experience.
 
+### Quickly take notes
+
 ![](https://github.com/Sieep-Coding/notetaking-app-electron/blob/main/assets/imgs/notezone-v01.gif)
+
+
 
 Features
 --------
