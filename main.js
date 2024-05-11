@@ -20,7 +20,7 @@ function createWindow() {
     backgroundColor: '#00000000',
     show: false
   });
-
+  
   mainWindow.loadFile('index.html');
 
   mainWindow.on('ready-to-show', () => {

@@ -40,11 +40,9 @@ function renderReminders() {
 function displayReminder(index) {
     const titleInput = document.querySelector('.reminder-editor input[type="text"]');
     const descriptionTextarea = document.querySelector('.reminder-editor textarea');
-    const emailInput = document.querySelector('.reminder-editor input[type="email"]');
 
     titleInput.value = reminders[index].title || '';
     descriptionTextarea.value = reminders[index].description || '';
-    emailInput.value = reminders[index].email || '';
     currentReminderIndex = index;
 }
 
@@ -52,19 +50,16 @@ function displayReminder(index) {
 function saveCurrentReminder() {
     const titleInput = document.querySelector('.reminder-editor input[type="text"]');
     const descriptionTextarea = document.querySelector('.reminder-editor textarea');
-    const emailInput = document.querySelector('.reminder-editor input[type="email"]');
     const reminderTimeSelect = document.getElementById('reminder-time');
 
     const reminderTitle = titleInput.value.trim();
     const reminderDescription = descriptionTextarea.value.trim();
-    const reminderEmail = emailInput.value.trim();
     const reminderTime = parseInt(reminderTimeSelect.value); // Parse reminder time to integer
 
     // Create a new reminder
     reminders.push({
         title: reminderTitle,
         description: reminderDescription,
-        email: reminderEmail,
         time: reminderTime // Store reminder time
     });
 
@@ -72,7 +67,7 @@ function saveCurrentReminder() {
     renderReminders();
     clearEditor();
     // Schedule notification
-    scheduleNotification(reminderTitle, reminderDescription, reminderEmail, reminderTime);
+    scheduleNotification(reminderTitle, reminderDescription, reminderTime);
 }
 
 // Create a new reminder
@@ -95,15 +90,13 @@ function deleteCurrentReminder() {
 function clearEditor() {
     const titleInput = document.querySelector('.reminder-editor input[type="text"]');
     const descriptionTextarea = document.querySelector('.reminder-editor textarea');
-    const emailInput = document.querySelector('.reminder-editor input[type="email"]');
 
     titleInput.value = '';
     descriptionTextarea.value = '';
-    emailInput.value = '';
 }
 
 // Schedule notification
-function scheduleNotification(title, description, email, time) {
+function scheduleNotification(title, description, time) {
     // Calculate time in milliseconds
     const timeInMilliseconds = time * 60 * 1000;
     
@@ -111,7 +104,6 @@ function scheduleNotification(title, description, email, time) {
     setTimeout(() => {
         // Send notification
         console.log(`Reminder: ${title} - ${description}`);
-        // Instead of email notification, handle your notification logic here
     }, timeInMilliseconds);
 }
 
