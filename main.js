@@ -4,8 +4,8 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 1000,
+    width: 1800,
+    height: 1980,
     minWidth: 800,
     minHeight: 600,
     webPreferences: {
@@ -20,7 +20,7 @@ function createWindow() {
     backgroundColor: '#00000000',
     show: false
   });
-  
+
   mainWindow.loadFile('index.html');
 
   mainWindow.on('ready-to-show', () => {
