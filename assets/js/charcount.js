@@ -7,6 +7,6 @@ window.onload = function() {
   
     function updateCharCount() {
       const charCount = noteEditor.value.length;
-      charCount.textContent = `${charCount} characters`;
+      charCount.textContent = `${charCount}`;
     }
   };
