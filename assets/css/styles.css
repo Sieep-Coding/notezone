@@ -12,6 +12,14 @@ body {
   overflow: hidden;
 }
 
+.titlebar {
+  -webkit-app-region: drag;
+}
+
+.titlebar nav {
+  -webkit-app-region: no-drag;
+}
+
 /* Container styles */
 .container {
   max-width: 1200px;
