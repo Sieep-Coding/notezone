@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { ipcRenderer } = require('electron');
 
 const remindersFilePath = path.join(__dirname, 'reminders.json');
 
@@ -24,24 +25,22 @@ function saveReminders() {
 
 // Render reminders in the reminder list
 function renderReminders() {
-    const noteList = document.querySelector('.reminder-list ul');
-    noteList.innerHTML = '';
-  
-    notes.forEach((note, index) => {
-      const li = document.createElement('li');
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = note.title || `Note ${index + 1}`;
-      input.addEventListener('change', () => {
-        notes[index].title = input.value.trim() || `Note ${index + 1}`;
-        saveReminders();
-      });
-  
-      li.appendChild(input);
-      li.addEventListener('click', () => displayNote(index)); // Add click event listener
-      noteList.appendChild(li);
+  const reminderList = document.querySelector('.reminder-list ul');
+  reminderList.innerHTML = '';
+
+  reminders.forEach((reminder, index) => {
+    const li = document.createElement('li');
+    const reminderTitle = document.createElement('span');
+    reminderTitle.textContent = reminder.title;
+    li.appendChild(reminderTitle);
+
+    li.addEventListener('click', () => {
+      displayReminder(index);
     });
-  }
+
+    reminderList.appendChild(li);
+  });
+}
 
 // Display a reminder in the editor
 function displayReminder(index) {
@@ -120,8 +119,8 @@ function scheduleNotification(title, description, time) {
 
   // Use setTimeout to trigger the notification after the specified time
   setTimeout(() => {
-    // Send notification
-    console.log(`Reminder: ${title} - ${description}`);
+    // Send notification request to the main process
+    ipcRenderer.send('show-notification', title, description);
   }, timeInMilliseconds);
 }
 
@@ -129,6 +128,9 @@ function scheduleNotification(title, description, time) {
 document.querySelector('.save-btn').addEventListener('click', saveCurrentReminder);
 document.querySelector('.new-btn').addEventListener('click', createNewReminder);
 document.querySelector('.delete-btn').addEventListener('click', deleteCurrentReminder);
+document.querySelector('.close-btn').addEventListener('click', () => {
+    window.close();
+  });
 
 // Initialize
 let currentReminderIndex = null;

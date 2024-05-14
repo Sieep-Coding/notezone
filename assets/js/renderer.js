@@ -1,135 +1,104 @@
 const fs = require('fs');
 const path = require('path');
-const { ipcRenderer } = require('electron');
+const notesFilePath = path.join(__dirname, 'notes.json');
 
-const remindersFilePath = path.join(__dirname, 'reminders.json');
+let notes = [];
 
-let reminders = [];
-
-// Load existing reminders from the file
-function loadReminders() {
+// Load existing notes from the file
+function loadNotes() {
   try {
-    const data = fs.readFileSync(remindersFilePath, 'utf8');
-    reminders = JSON.parse(data);
-    renderReminders();
+    const data = fs.readFileSync(notesFilePath, 'utf8');
+    notes = JSON.parse(data);
+    renderNotes();
   } catch (err) {
     // If the file doesn't exist, create it
-    fs.writeFileSync(remindersFilePath, JSON.stringify([]));
+    fs.writeFileSync(notesFilePath, JSON.stringify([]));
   }
 }
 
-// Save reminders to the file
-function saveReminders() {
-  fs.writeFileSync(remindersFilePath, JSON.stringify(reminders));
+// Save notes to the file
+function saveNotes() {
+  fs.writeFileSync(notesFilePath, JSON.stringify(notes));
 }
 
-// Render reminders in the reminder list
-function renderReminders() {
-  const reminderList = document.querySelector('.reminder-list ul');
-  reminderList.innerHTML = '';
+// Render notes in the note list
+function renderNotes() {
+  const noteList = document.querySelector('.note-list ul');
+  noteList.innerHTML = '';
 
-  reminders.forEach((reminder, index) => {
+  notes.forEach((note, index) => {
     const li = document.createElement('li');
-    const reminderTitle = document.createElement('span');
-    reminderTitle.textContent = reminder.title;
-    li.appendChild(reminderTitle);
-
-    li.addEventListener('click', () => {
-      displayReminder(index);
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = note.title || `Note ${index + 1}`;
+    input.addEventListener('change', () => {
+      notes[index].title = input.value.trim() || `Note ${index + 1}`;
+      saveNotes();
     });
 
-    reminderList.appendChild(li);
+    li.appendChild(input);
+    li.addEventListener('click', () => displayNote(index)); // Add click event listener
+    noteList.appendChild(li);
   });
 }
 
-// Display a reminder in the editor
-function displayReminder(index) {
-  const titleInput = document.querySelector('.reminder-editor input[type="text"]');
-  const descriptionTextarea = document.querySelector('.reminder-editor textarea');
-
-  titleInput.value = reminders[index].title || '';
-  descriptionTextarea.value = reminders[index].description || '';
-
-  currentReminderIndex = index;
+// Display a note in the editor
+function displayNote(index) {
+  const noteEditor = document.querySelector('.note-editor textarea');
+  noteEditor.value = notes[index].content || '';
+  currentNoteIndex = index;
 }
 
-// Save the current reminder
-function saveCurrentReminder() {
-  const titleInput = document.querySelector('.reminder-editor input[type="text"]');
-  const descriptionTextarea = document.querySelector('.reminder-editor textarea');
-  const reminderTimeSelect = document.getElementById('reminder-time');
-
-  const reminderTitle = titleInput.value.trim();
-  const reminderDescription = descriptionTextarea.value.trim();
-  const reminderTime = parseInt(reminderTimeSelect.value); // Parse reminder time to integer
-
-  // Create a new reminder
-  if (currentReminderIndex === null) {
-    reminders.push({
-      title: reminderTitle,
-      description: reminderDescription,
-      time: reminderTime // Store reminder time
+// Save the current note
+function saveCurrentNote() {
+  const noteEditor = document.querySelector('.note-editor textarea');
+  const noteContent = noteEditor.value.trim();
+  if (currentNoteIndex === null) {
+    // Create a new note
+    notes.push({
+      title: `Note ${notes.length + 1}`,
+      content: noteContent
     });
   } else {
-    // Update an existing reminder
-    reminders[currentReminderIndex] = {
-      title: reminderTitle,
-      description: reminderDescription,
-      time: reminderTime
-    };
+    // Update an existing note
+    notes[currentNoteIndex].content = noteContent;
   }
-
-  saveReminders();
-  renderReminders();
-  clearEditor();
-
-  // Schedule notification
-  scheduleNotification(reminderTitle, reminderDescription, reminderTime);
-}
-
-// Create a new reminder
-function createNewReminder() {
-  currentReminderIndex = null;
+  saveNotes();
+  renderNotes();
   clearEditor();
 }
 
-// Delete the current reminder
-function deleteCurrentReminder() {
-  if (currentReminderIndex !== null) {
-    reminders.splice(currentReminderIndex, 1);
-    saveReminders();
-    renderReminders();
+// Create a new note
+function createNewNote() {
+  currentNoteIndex = null;
+  clearEditor();
+}
+
+// Delete the current note
+function deleteCurrentNote() {
+  if (currentNoteIndex !== null) {
+    notes.splice(currentNoteIndex, 1);
+    saveNotes();
+    renderNotes();
     clearEditor();
   }
 }
 
-// Clear the reminder editor
+// Clear the note editor
 function clearEditor() {
-  const titleInput = document.querySelector('.reminder-editor input[type="text"]');
-  const descriptionTextarea = document.querySelector('.reminder-editor textarea');
-
-  titleInput.value = '';
-  descriptionTextarea.value = '';
-}
-
-// Schedule notification
-function scheduleNotification(title, description, time) {
-  // Calculate time in milliseconds
-  const timeInMilliseconds = time * 60 * 1000;
-
-  // Use setTimeout to trigger the notification after the specified time
-  setTimeout(() => {
-    // Send notification request to the main process
-    ipcRenderer.send('show-notification', title, description);
-  }, timeInMilliseconds);
+  const noteEditor = document.querySelector('.note-editor textarea');
+  noteEditor.value = '';
 }
 
 // Event listeners
-document.querySelector('.save-btn').addEventListener('click', saveCurrentReminder);
-document.querySelector('.new-btn').addEventListener('click', createNewReminder);
-document.querySelector('.delete-btn').addEventListener('click', deleteCurrentReminder);
+document.querySelector('.save-btn').addEventListener('click', saveCurrentNote);
+document.querySelector('.new-btn').addEventListener('click', createNewNote);
+document.querySelector('.delete-btn').addEventListener('click', deleteCurrentNote);
+document.querySelector('.close-btn').addEventListener('click', () => {
+  window.close();
+});
 
 // Initialize
-let currentReminderIndex = null;
-loadReminders();
-loadSettings(); // Apply settings from settings.js
+let currentNoteIndex = null;
+loadNotes();
+loadSettings();
