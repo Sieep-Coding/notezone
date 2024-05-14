@@ -11,6 +11,8 @@ It provides a user-friendly interface for creating, editing, and managing notes 
 
 ![](https://github.com/Sieep-Coding/notetaking-app-electron/blob/main/assets/imgs/notezone-v01.gif)
 
+### Set Reminders
+
 ![](https://github.com/Sieep-Coding/notetaking-app-electron/blob/main/assets/imgs/reminder-tab.png)
 
 
