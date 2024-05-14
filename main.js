@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, Notification } = require('electron');
 
 let mainWindow;
 
@@ -19,6 +19,15 @@ function createWindow() {
     vibrancy: 'ultra-dark',
     backgroundColor: '#00000000',
     show: false
+  });
+
+  ipcMain.on('show-notification', (event, title, description) => {
+    const notification = new Notification({
+      title,
+      body: description,
+      icon: 'path/to/notification-icon.png' // Optional: set a custom icon for the notification
+    });
+    notification.show();
   });
 
   mainWindow.loadFile('index.html');

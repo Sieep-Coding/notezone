@@ -125,6 +125,123 @@ main {
   overflow: hidden;
 }
 
+/* Reminder list styles */
+.reminder-list {
+  padding: 20px;
+  background-color: rgba(76, 76, 76, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow-y: auto;
+ }
+ 
+ .reminder-list h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ff9800;
+  text-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+ }
+ 
+ .reminder-list ul {
+  list-style: none;
+ }
+ 
+ .reminder-list li {
+  background-color: rgba(60, 60, 60, 0.5);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+ 
+ .reminder-list li:hover {
+  background-color: rgba(76, 76, 76, 0.5);
+  transform: scale(1.05);
+ }
+ 
+ .reminder-list li span {
+  flex-grow: 1;
+  margin-right: 10px;
+ }
+ 
+ /* Reminder editor styles */
+ .reminder-editor {
+  padding: 20px;
+  background-color: rgba(76, 76, 76, 0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+ }
+ 
+ .reminder-editor input,
+ .reminder-editor textarea {
+  background-color: rgba(60, 60, 60, 0.5);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+ }
+ 
+ .reminder-editor textarea {
+  flex-grow: 1;
+  resize: none;
+ }
+ 
+ .reminder-editor .controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+ }
+ 
+ .reminder-editor select {
+  background-color: rgba(60, 60, 60, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
+ }
+ 
+ .reminder-editor button {
+  background-color: rgba(255, 152, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+ }
+ 
+ .reminder-editor button:hover {
+  background-color: rgba(255, 152, 0, 0.8);
+  transform: scale(1.05);
+ }
+ 
+
 .note-list {
   background-color: rgba(44, 44, 44, 0.5);
   padding: 20px;

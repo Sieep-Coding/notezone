@@ -1,3 +1,18 @@
+function loadSettings() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedFont = localStorage.getItem('font') || 'Poppins';
+  const savedHighContrast = localStorage.getItem('highContrast') === 'true';
+  const savedLargerText = localStorage.getItem('largerText') === 'true';
+
+  applyTheme(savedTheme);
+  applyFont(savedFont);
+  applyHighContrast(savedHighContrast);
+  applyLargerText(savedLargerText);
+}
+
+// Call the loadSettings function on window load
+window.addEventListener('load', loadSettings);
+
 // Get theme buttons
 const themeButtons = document.querySelectorAll('.theme-btn');
 
@@ -84,9 +99,4 @@ function applyHighContrast(highContrast) {
 // Apply larger text
 function applyLargerText(largerText) {
   document.body.classList.toggle('larger-text', largerText);
-}
-
-// Save settings to localStorage
-function saveSettings(setting, value) {
-  localStorage.setItem(setting, value);
 }
