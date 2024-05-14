@@ -15,6 +15,7 @@ function loadReminders() {
   } catch (err) {
     // If the file doesn't exist, create it
     fs.writeFileSync(remindersFilePath, JSON.stringify([]));
+    renderReminders();
   }
 }
 
@@ -129,8 +130,8 @@ document.querySelector('.save-btn').addEventListener('click', saveCurrentReminde
 document.querySelector('.new-btn').addEventListener('click', createNewReminder);
 document.querySelector('.delete-btn').addEventListener('click', deleteCurrentReminder);
 document.querySelector('.close-btn').addEventListener('click', () => {
-    window.close();
-  });
+  window.close();
+});
 
 // Initialize
 let currentReminderIndex = null;
